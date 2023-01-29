@@ -31,7 +31,7 @@ The configuration file is parsed using `JSON`. Here is a config example.
 
 * **debug** - Debug level from `0` - `2`.
 * **tasks** - An array of tasks to schedule via Cron.
-    * **cronstr** - The cron string to schedule (read more here).
+    * **cronstr** - The cron string to schedule (read more [here](https://www.netiq.com/documentation/cloud-manager-2-5/ncm-reference/data/bexyssf.html)).
     * **url** - URL to send our HTTP/HTTPS request to.
     * **auth** - What to set the `Authorization` header to within the request.
     * **method** - HTTP method (e.g. `GET`, `POST`, etc.).
