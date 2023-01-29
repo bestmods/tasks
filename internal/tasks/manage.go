@@ -12,7 +12,6 @@ func Exec(task config.Task, debug int) {
 
 	if err != nil {
 		fmt.Printf("Error executing task '%s' with method '%s' and auth '%s'.\n", task.URL, task.Method, task.Auth)
-		fmt.Println(err)
 	}
 
 	if debug > 1 {
