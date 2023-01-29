@@ -8,6 +8,6 @@ type Task struct {
 }
 
 type Config struct {
-	Debug bool   `json:"debug"`
+	Debug int    `json:"debug"`
 	Tasks []Task `json:"tasks"`
 }
