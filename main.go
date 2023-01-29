@@ -34,7 +34,14 @@ func main() {
 
 	// Load config.
 	var cfg config.Config
-	cfg.LoadConfig(*configFile)
+	err := cfg.LoadConfig(*configFile)
+
+	if err != nil {
+		fmt.Println("Error reading config file!")
+		fmt.Println(err)
+
+		os.Exit(1)
+	}
 
 	if list {
 		fmt.Printf("Debug => %d\n", cfg.Debug)
