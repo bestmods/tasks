@@ -16,10 +16,12 @@ const VERSION = "1.0.0"
 func main() {
 	var list bool
 	var version bool
+	var help bool
 
 	// Handle command line parameters.
 	flag.BoolVar(&list, "list", false, "Lists all tasks.")
 	flag.BoolVar(&version, "version", false, "Shows the current version.")
+	flag.BoolVar(&help, "help", false, "Shows the help menu.")
 
 	configFile := flag.String("cfg", "/etc/bestmods-tasks/tasks.conf", "The path to the config file.")
 
@@ -28,6 +30,17 @@ func main() {
 	// Check verison flag.
 	if version {
 		fmt.Println(VERSION)
+
+		os.Exit(0)
+	}
+
+	// Check help flag.
+	if help {
+		fmt.Printf("./tasks --cfg <cfgFile> --list --version --help\n")
+		fmt.Printf("\t--cfg => Path to config file. Default path is /etc/bestmods-tasks/tasks.conf.\n")
+		fmt.Printf("\t--list => Lists configuration file.\n")
+		fmt.Printf("\t--version => Prints the current version.\n")
+		fmt.Printf("\t--help => Prints the help menu.\n\n")
 
 		os.Exit(0)
 	}
