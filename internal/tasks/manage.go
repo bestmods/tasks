@@ -15,7 +15,7 @@ func Exec(task config.Task, debug int) {
 	}
 
 	if debug > 1 {
-		fmt.Printf("Task '%s' with method '%s' executed.", task.URL, task.Method)
+		fmt.Printf("Task '%s' with method '%s' executed.\n", task.URL, task.Method)
 	}
 
 	if debug > 2 {
