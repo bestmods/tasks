@@ -20,7 +20,7 @@ The configuration file is parsed using `JSON`. Here is a config example.
     "debug": 2,
     "tasks": [
         {
-            "cronstr": "* * * * *",
+            "cronstr": "* * * * * *",
             "url": "mydomain.com",
             "auth": "Bearer TEST",
             "method": "GET"
