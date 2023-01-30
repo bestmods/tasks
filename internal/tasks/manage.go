@@ -8,7 +8,7 @@ import (
 )
 
 func Exec(task config.Task, debug int) {
-	_, _, err := chttp.SendHTTPReq(task.URL, task.Auth, task.Method, nil)
+	data, _, err := chttp.SendHTTPReq(task.URL, task.Auth, task.Method, nil)
 
 	if err != nil {
 		fmt.Printf("Error executing task '%s' with method '%s' and auth '%s'.\n", task.URL, task.Method, task.Auth)
@@ -16,5 +16,9 @@ func Exec(task config.Task, debug int) {
 
 	if debug > 1 {
 		fmt.Printf("Task '%s' with method '%s' executed.", task.URL, task.Method)
+	}
+
+	if debug > 2 {
+		fmt.Println(data)
 	}
 }
