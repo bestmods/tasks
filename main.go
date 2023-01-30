@@ -6,9 +6,8 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"time"
 
-	"github.com/go-co-op/gocron"
+	cron "github.com/robfig/cron/v3"
 )
 
 const VERSION = "1.0.0"
@@ -70,18 +69,27 @@ func main() {
 	}
 
 	// Setup cron jobs.
-	sch := gocron.NewScheduler(time.UTC)
+	sch := cron.New(cron.WithParser(cron.NewParser(cron.SecondOptional | cron.Minute | cron.Hour | cron.Dom | cron.Month | cron.Dow)))
 
 	for _, task := range cfg.Tasks {
-		sch.Cron(task.CronStr).Do(func() {
+		_, err = sch.AddFunc(task.CronStr, func() {
 			tasks.Exec(task, cfg.Debug)
 		})
+
+		if err != nil {
+			fmt.Printf("Error initiating task\n")
+			fmt.Println(err)
+
+			continue
+		}
 
 		if cfg.Debug > 0 {
 			fmt.Printf("Task '%s' ('%s') initiated.\n", task.URL, task.Method)
 		}
 	}
 
+	sch.Start()
+
 	// Start blocking.
-	sch.StartBlocking()
+	select {}
 }
